@@ -7,8 +7,16 @@ import com.vivek.persistence.ProjectDaoImpl;
 
 public class EmployeeServiceImpl implements EmployeeService {
 
-	private ProjectDao projectDao = new ProjectDaoImpl();
-	private EmployeeDao employeeDao = new EmployeeDaoImpl();
+	private ProjectDao projectDao ;
+	private EmployeeDao employeeDao;
+	
+	
+
+	public EmployeeServiceImpl(ProjectDao projectDao, EmployeeDao employeeDao) {
+		super();
+		this.projectDao = projectDao;
+		this.employeeDao = employeeDao;
+	}
 
 	@Override
 	public boolean searchProjectById(int pid) {

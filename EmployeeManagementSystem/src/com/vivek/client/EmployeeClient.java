@@ -1,13 +1,20 @@
 package com.vivek.client;
 
 import java.util.Scanner;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+
+import com.vivek.config.MyConfig;
 import com.vivek.presentation.EmployeePresentation;
-import com.vivek.presentation.EmployeePresentationImpl;
 
 public class EmployeeClient {
+	
 
 	public static void main(String[] args) {
-		EmployeePresentation employeePresentation = new EmployeePresentationImpl();
+		//ApplicationContext applicationContext = new ClassPathXmlApplicationContext("layered.xml");
+		AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(MyConfig.class);
+		EmployeePresentation employeePresentation = (EmployeePresentation)annotationConfigApplicationContext.getBean("getEmployeePresentation");
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
 			employeePresentation.showMenu();

@@ -5,7 +5,13 @@ import java.util.Scanner;
 import com.vivek.service.EmployeeService;
 import com.vivek.service.EmployeeServiceImpl;
 public class EmployeePresentationImpl implements EmployeePresentation {
-	EmployeeService employeeService = new EmployeeServiceImpl();
+	private EmployeeService employeeService;
+	
+	public EmployeePresentationImpl(EmployeeService employeeService) {
+		super();
+		this.employeeService = employeeService;
+	}
+
 	Scanner scanner = new Scanner(System.in);
 	@Override
 	public void showMenu() {

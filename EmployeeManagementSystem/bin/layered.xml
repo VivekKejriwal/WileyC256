@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="empbeanconst" class="com.vivek.beans.Employee">
+		<constructor-arg name="empName" value="Vivek"></constructor-arg>
+		<constructor-arg name="employeeId" value="201"></constructor-arg>
+		<constructor-arg name="department" value="IT"></constructor-arg>
+		<constructor-arg name="designation" value="Developer"></constructor-arg>
+		<constructor-arg name="salary" value="2500000"></constructor-arg>
+	</bean>
+	<bean id="projbeanconst" class="com.vivek.beans.Project">
+		<constructor-arg name="name" value="Spring"></constructor-arg>
+		<constructor-arg name="projectId" value="203"></constructor-arg>
+	</bean>
+
+	<bean id="emppresentation"
+		class="com.vivek.presentation.EmployeePresentationImpl">
+		<constructor-arg name="employeeService"
+			ref="empservice"></constructor-arg>
+	</bean>
+	<bean id="empservice"
+		class="com.vivek.service.EmployeeServiceImpl">
+		<constructor-arg name="projectDao" ref="projdao"></constructor-arg>
+		<constructor-arg name="employeeDao" ref="empdao"></constructor-arg>
+	</bean>
+	<bean id="empdao" class="com.vivek.persistence.EmployeeDaoImpl"></bean>
+	<bean id="projdao" class="com.vivek.persistence.ProjectDaoImpl"></bean>
+	<bean id="empclient" class="com.vivek.client.EmployeeClient">
+		<property name="employeePresentation" ref="empservice"></property>
+	</bean>
+</beans>

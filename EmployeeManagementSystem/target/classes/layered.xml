@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="emppresentation"
+		class="com.vivek.presentation.EmployeePresentationImpl">
+		<constructor-arg name="employeeService"
+			ref="empservice"></constructor-arg>
+	</bean>
+	<bean id="empservice"
+		class="com.vivek.service.EmployeeServiceImpl">
+		<constructor-arg name="projectDao" ref="projdao"></constructor-arg>
+		<constructor-arg name="employeeDao" ref="empdao"></constructor-arg>
+	</bean>
+	<bean id="empdao" class="com.vivek.persistence.EmployeeDaoImpl"></bean>
+	<bean id="projdao" class="com.vivek.persistence.ProjectDaoImpl"></bean>
+	<bean id="empclient" class="com.vivek.client.EmployeeClient">
+		<property name="employeePresentation" ref="emppresentation"></property>
+	</bean>
+</beans>
